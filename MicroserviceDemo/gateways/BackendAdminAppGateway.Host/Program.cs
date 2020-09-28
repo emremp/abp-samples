@@ -14,9 +14,12 @@ namespace BackendAdminAppGateway.Host
         public static int Main(string[] args)
         {
             //TODO: Temporary: it's not good to read appsettings.json here just to configure logging
+            var envVal = string.IsNullOrEmpty(Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT"));
+            var controlVal = envVal ? "." + Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") : "";
+            
             var configuration = new ConfigurationBuilder()
                 .SetBasePath(Directory.GetCurrentDirectory())
-                .AddJsonFile("appsettings.json")
+                .AddJsonFile("appsettings" + controlVal + ".json")
                 .AddEnvironmentVariables()
                 .Build();
 
