@@ -1,7 +1,8 @@
-﻿using Acme.BookStore.BookManagement.Books;
+using Acme.BookStore.BookManagement.Books;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp.Data;
 using Volo.Abp.EntityFrameworkCore;
+using Acme.BookStore.BookManagement.Customers;
 
 namespace Acme.BookStore.BookManagement.EntityFrameworkCore
 {
@@ -9,5 +10,6 @@ namespace Acme.BookStore.BookManagement.EntityFrameworkCore
     public interface IBookManagementDbContext : IEfCoreDbContext
     {
         DbSet<Book> Books { get; }
+        DbSet<Customer> Customers { get; set; }
     }
 }

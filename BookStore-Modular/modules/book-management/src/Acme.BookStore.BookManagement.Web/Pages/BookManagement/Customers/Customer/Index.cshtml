@@ -1,0 +1,50 @@
+@page
+@using Microsoft.AspNetCore.Authorization
+@using Microsoft.AspNetCore.Mvc.Localization
+@using Volo.Abp.AspNetCore.Mvc.UI.Layout
+@using Acme.BookStore.BookManagement.Web.Pages.BookManagement.Customers.Customer
+@using Acme.BookStore.BookManagement.Localization
+@using Acme.BookStore.BookManagement.Web.Menus
+@model IndexModel
+@inject IPageLayout PageLayout
+@inject IHtmlLocalizer<BookManagementResource> L
+@{
+    PageLayout.Content.Title = L["Customer"].Value;
+    PageLayout.Content.BreadCrumb.Add(L["Menu:Customer"].Value);
+    PageLayout.Content.MenuItemName = BookManagementMenus.Customer;
+}
+
+@section scripts
+{
+    <abp-script src="/Pages/BookManagement/Customers/Customer/index.js" />
+}
+@section styles
+{
+    <abp-style src="/Pages/BookManagement/Customers/Customer/index.css"/>
+}
+
+<abp-card>
+    <abp-card-header>
+        <abp-row>
+            <abp-column size-md="_6">
+                <abp-card-title>@L["Customer"]</abp-card-title>
+            </abp-column>
+            <abp-column size-md="_6" class="text-right">
+                <abp-button id="NewCustomerButton"
+                            text="@L["CreateCustomer"].Value"
+                            icon="plus"
+                            button-type="Primary" />
+            </abp-column>
+        </abp-row>
+    </abp-card-header>
+    <abp-card-body>
+        <abp-table striped-rows="true" id="CustomerTable" class="nowrap">
+            <thead>
+            <tr>
+                <th>@L["Actions"]</th>
+                <th>@L["CustomerName"]</th>
+            </tr>
+            </thead>
+        </abp-table>
+    </abp-card-body>
+</abp-card>

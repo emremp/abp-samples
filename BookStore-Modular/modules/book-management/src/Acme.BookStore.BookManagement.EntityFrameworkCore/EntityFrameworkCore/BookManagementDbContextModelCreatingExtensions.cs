@@ -1,4 +1,5 @@
-﻿using System;
+using Acme.BookStore.BookManagement.Customers;
+using System;
 using Acme.BookStore.BookManagement.Books;
 using Microsoft.EntityFrameworkCore;
 using Volo.Abp;
@@ -24,6 +25,16 @@ namespace Acme.BookStore.BookManagement.EntityFrameworkCore
                    b.ConfigureByConvention(); //auto configure for the base class props
                    b.Property(x => x.Name).IsRequired().HasMaxLength(128);
                });
+
+
+            builder.Entity<Customer>(b =>
+            {
+                b.ToTable(options.TablePrefix + "Customers", options.Schema);
+                b.ConfigureByConvention(); 
+                
+
+                /* Configure more properties here */
+            });
         }
     }
 }
