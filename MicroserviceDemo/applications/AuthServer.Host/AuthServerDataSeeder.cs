@@ -61,6 +61,7 @@ namespace AuthServer.Host
             await CreateApiResourceAsync("TenantManagementService", commonApiUserClaims);
             await CreateApiResourceAsync("BloggingService", commonApiUserClaims);
             await CreateApiResourceAsync("ProductService", commonApiUserClaims);
+            await CreateApiResourceAsync("ResourceService", commonApiUserClaims);
             await CreateApiResourceAsync("InternalGateway", commonApiUserClaims);
             await CreateApiResourceAsync("BackendAdminAppGateway", commonApiUserClaims);
             await CreateApiResourceAsync("PublicWebSiteGateway", commonApiUserClaims);
@@ -108,18 +109,18 @@ namespace AuthServer.Host
 
             await CreateClientAsync(
                 "console-client-demo",
-                new[] { "BloggingService", "IdentityService", "InternalGateway", "ProductService", "TenantManagementService" },
+                new[] { "BloggingService", "IdentityService", "InternalGateway", "ProductService", "ResourceService", "TenantManagementService" },
                 new[] { "client_credentials", "password" },
                 commonSecret,
-                permissions: new[] { IdentityPermissions.Users.Default, TenantManagementPermissions.Tenants.Default, "ProductManagement.Product" }
+                permissions: new[] { IdentityPermissions.Users.Default, TenantManagementPermissions.Tenants.Default, "ProductManagement.Product", "ResourceManagement" }
             );
             
             await CreateClientAsync(
                 "backend-admin-app-client",
-                commonScopes.Union(new[] { "BackendAdminAppGateway", "IdentityService", "ProductService", "TenantManagementService" }),
+                commonScopes.Union(new[] { "BackendAdminAppGateway", "IdentityService", "ProductService", "ResourceService", "TenantManagementService" }),
                 new[] { "hybrid" },
                 commonSecret,
-                permissions: new[] { IdentityPermissions.Users.Default, "ProductManagement.Product" },
+                permissions: new[] { IdentityPermissions.Users.Default, "ProductManagement.Product", "ResourceManagement" },
                 redirectUri: "https://localhost:44354/signin-oidc",
                 postLogoutRedirectUri: "https://localhost:44354/signout-callback-oidc"
             );

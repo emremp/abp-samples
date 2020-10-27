@@ -5,29 +5,29 @@ using Volo.Abp;
 
 namespace Acme.BookStore.BookManagement.Samples
 {
-    [RemoteService]
-    [Route("api/BookManagement/sample")]
-    public class SampleController : BookManagementController, ISampleAppService
-    {
-        private readonly ISampleAppService _sampleAppService;
+    // [RemoteService]
+    // [Route("api/BookManagement/sample")]
+    // public class SampleController : BookManagementController, ISampleAppService
+    // {
+    //     private readonly ISampleAppService _sampleAppService;
 
-        public SampleController(ISampleAppService sampleAppService)
-        {
-            _sampleAppService = sampleAppService;
-        }
+    //     public SampleController(ISampleAppService sampleAppService)
+    //     {
+    //         _sampleAppService = sampleAppService;
+    //     }
 
-        [HttpGet]
-        public async Task<SampleDto> GetAsync()
-        {
-            return await _sampleAppService.GetAsync();
-        }
+    //     [HttpGet]
+    //     public async Task<SampleDto> GetAsync()
+    //     {
+    //         return await _sampleAppService.GetAsync();
+    //     }
 
-        [HttpGet]
-        [Route("authorized")]
-        [Authorize]
-        public async Task<SampleDto> GetAuthorizedAsync()
-        {
-            return await _sampleAppService.GetAsync();
-        }
-    }
+    //     [HttpGet]
+    //     [Route("authorized")]
+    //     [Authorize]
+    //     public async Task<SampleDto> GetAuthorizedAsync()
+    //     {
+    //         return await _sampleAppService.GetAsync();
+    //     }
+    // }
 }

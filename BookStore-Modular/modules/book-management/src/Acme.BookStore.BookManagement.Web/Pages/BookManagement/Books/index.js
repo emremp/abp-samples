@@ -1,6 +1,6 @@
 ﻿$(function () {
     var dataTable = $('#BooksTable').DataTable(abp.libs.datatables.normalizeConfiguration({
-        ajax: abp.libs.datatables.createAjax(acme.bookStore.bookManagement.book.getList),
+        ajax: abp.libs.datatables.createAjax(acme.bookStore.bookManagement.books.book.getList),
         columnDefs: [
             { data: "name" },
             { data: "type" },
